@@ -1,6 +1,9 @@
 import { Client, GatewayIntentBits } from 'discord.js';
 import type { FavouriteBR, CommandFile } from './lib/types';
 import { Commands } from './lib/utils';
+import { refreshEnV } from './refresh_env';
+
+await refreshEnV();
 
 const discord = new Client({
 	intents: [GatewayIntentBits.Guilds],
@@ -32,12 +35,8 @@ discord.on('interactionCreate', async (a) => {
 	command.handlers(a);
 });
 
-// setInterval(async () => {
-// 	const res = await fetch(
-// 		`https://api.mozambiquehe.re/maprotation?auth=${process.env.APEX_API_KEY}&version=2`
-// 	);
-// 	const ress: Modes = <Modes>await res.json();
-// }, 10000);
+// TODO: Implement notifications
+// setInterval(async () => {}, 10000);
 
 try {
 	await discord.login(process.env.TOKEN);

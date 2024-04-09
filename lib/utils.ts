@@ -8,11 +8,9 @@ async function grep() {
 	);
 
 	files.pop();
-
-	const regex = /\.\//i;
 	const cmds: CommandFile[] = await Promise.all(
 		files.map(async (v) => {
-			const c = await import(`../commands/${v.replace(regex, '')}`);
+			const c = await import(`../commands/${v.replace(/\.\//gi, '')}`);
 			return {
 				cmd: c.default.cmd,
 				handler: c.default.handler,

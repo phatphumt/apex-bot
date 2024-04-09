@@ -5,7 +5,6 @@ import {
 } from 'discord.js';
 import { BRMaps, Gamemodes } from '../lib/types';
 import { usersFavourites } from '..';
-import { openInEditor } from 'bun';
 
 const cmd = new SlashCommandBuilder()
 	.setName('set-favourite')

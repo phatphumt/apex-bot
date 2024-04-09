@@ -57,3 +57,5 @@ export type FavouriteBR = {
 	favouriteMap: BRMaps;
 	notifications: boolean;
 };
+
+export type TODO = any;

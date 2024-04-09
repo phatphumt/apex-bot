@@ -25,7 +25,6 @@ export default {
 	cmd,
 	handler: async (interaction: Interaction<CacheType>) => {
 		if (!interaction.isChatInputCommand()) return;
-
 		const mode = interaction.options.getInteger('mode');
 		const res = await fetch(
 			`https://api.mozambiquehe.re/maprotation?auth=${process.env.APEX_API_KEY}&version=2`
@@ -37,6 +36,7 @@ export default {
 			currAsset: '',
 			currMap: '',
 			name: '',
+			color: 0xffffff,
 		};
 
 		switch (mode) {
@@ -47,6 +47,7 @@ export default {
 					nextMap: ranked.next.map,
 					currMap: ranked.current.map,
 					name: 'Ranked',
+					color: 0xb70101,
 				};
 				break;
 			case 1:
@@ -56,6 +57,7 @@ export default {
 					nextMap: battle_royale.next.map,
 					currMap: battle_royale.current.map,
 					name: 'Pubs',
+					color: 0x4f8ffd,
 				};
 				break;
 			case 2:
@@ -65,6 +67,7 @@ export default {
 					nextMap: `${ltm.next.map} - ${ltm.next.eventName}`,
 					currMap: `${ltm.current.map} - ${ltm.current.eventName}`,
 					name: 'Mixtape',
+					color: 0xffc505,
 				};
 				break;
 			default:
@@ -74,12 +77,14 @@ export default {
 					nextMap: battle_royale.next.map,
 					currMap: battle_royale.current.map,
 					name: 'Pubs',
+					color: 0x4f8ffd,
 				};
 				break;
 		}
 
 		const embed = new EmbedBuilder()
 			.setTitle(`Apex ${options.name} map rotation`)
+			.setColor(options.color)
 			.addFields(
 				{
 					name: 'Current Map: ',
